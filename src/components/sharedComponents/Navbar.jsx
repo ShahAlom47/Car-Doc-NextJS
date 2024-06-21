@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsHandbag } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
   const session=useSession()
@@ -65,6 +65,7 @@ const Navbar = () => {
         <Link href={'/'}><button className='p-3  rounded-full bg-none hover:text-neutral-50 hover:bg-p-color '><IoIosSearch /></button></Link>
         <Link href={'/'}><button className='btn btn-sm  rounded-sm hover:bg-p-color hover:text-neutral-50 border border-p-color'>Appointment</button></Link>
         <Link href={'/login'}><button className='btn btn-sm  rounded-sm bg-p-color text-neutral-50 hover:text-neutral-800 border border-p-color'>login</button></Link>
+       <button onClick={signOut} className='btn btn-sm  rounded-sm bg-neutral-700 text-neutral-50 hover:text-neutral-800 border border-p-color'>logOut</button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 'use client'
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { ImGoogle } from 'react-icons/im';
@@ -10,8 +10,8 @@ const SocialLogin = () => {
     const session=useSession()
 const googleLoginHandel = async()=>{
 const res =await signIn('google',{redirect:false})
-
-if(await res.status==='authenticated'){
+console.log(session);
+if( res.status==='authenticated'){
 router.push('/')
 }
 
