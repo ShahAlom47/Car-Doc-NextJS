@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { BiArrowToRight } from 'react-icons/bi';
 
@@ -13,7 +14,7 @@ const ServicesCard = ({data}) => {
             <h2 className="card-title">{data.title}</h2>
             <div className=" flex justify-between items-center text-start">
                 <p className="font-semibold text-p-color">Price: $ {data.price}</p>
-                <button className="btn"><BiArrowToRight></BiArrowToRight></button>
+               <Link href={`/services/${data._id}`} > <button className="btn"><BiArrowToRight></BiArrowToRight></button></Link>
             </div>
         </div>
     </div>

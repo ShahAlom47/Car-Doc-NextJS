@@ -1,11 +1,18 @@
 import Image from 'next/image';
 import React from 'react';
-import { servicesData } from '../../lib/serviceData';
 import ServicesCard from '../card/ServicesCard';
 
-const OurServices = async() => {
-   
+const getServicesData = async () => {
+    const res = await fetch('http://localhost:3000/api/services/get-all')
+const services=res.json()
+return services
+}
 
+
+const OurServices = async () => {
+
+    const servicesData =await getServicesData()
+  
     return (
         <div className=' max-w-7xl my-10'>
             <div className=' text-center mb-6'>
@@ -15,10 +22,10 @@ const OurServices = async() => {
             </div>
 
             <div className=' p-5 grid grid-cols-3'>
-        {
-            servicesData.map((data,index)=><ServicesCard key={index} data={data}></ServicesCard>)
-        }
-               
+                {
+                    servicesData?.map((data, index) => <ServicesCard key={index} data={data}></ServicesCard>)
+                }
+
             </div>
 
         </div>
