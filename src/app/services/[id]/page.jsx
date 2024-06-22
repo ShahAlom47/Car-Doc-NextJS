@@ -1,5 +1,6 @@
 import { getServiceDetails } from '@/services/getServices';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const getDetails = async () => {
@@ -24,19 +25,24 @@ const ServiceDetails = async ({ params }) => {
                     <p>{data.description}</p>
                 </div>
 
-                <div>
-                    <div className=' grid grid-cols-2 gap-3'>
+                <div className='flex  gap-4'>
+                    <div className='flex-1 grid grid-cols-2 gap-3'>
                         {
-                            data.facility.map((f,i)=><div key={i} className=' p-2 border-t-2  border-p-color  rounded-lg '>
+                            data.facility.map((f, i) => <div key={i} className=' p-2 border-t-2  border-p-color  rounded-lg '>
                                 <h1 className='font-bold'>{f.name}</h1>
-                                <p>{f.description}</p>
+                                <p>{f.details}</p>
 
                             </div>)
                         }
                     </div>
+                    <div className='w-4/12 m-3 p-3 border-p-color'>
+                        <Image src={data.img} alt='img' width={400} height={100}></Image>
+                        <h1 className='text-xl font-semibold '>Price: <span className='text-p-color'>{data?.price}</span></h1>
+                        <Link href={`/services/checkout/${data._id}`}><button className='text-neutral-50 hover:text-neutral-950 btn bg-p-color w-full'>Checkout</button></Link>
+                    </div>
                 </div>
             </div>
-            <h1 className='text-xl text-p-color'>Price:{data?.price}</h1>
+
         </div>
     );
 };
