@@ -1,6 +1,6 @@
 'use client'
 import { signIn, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { ImGoogle } from 'react-icons/im';
 import { IoLogoFacebook, IoLogoGithub } from 'react-icons/io';
@@ -8,8 +8,14 @@ import { IoLogoFacebook, IoLogoGithub } from 'react-icons/io';
 const SocialLogin = () => {
     const router=useRouter()
     const session=useSession()
+    const searchPath=useSearchParams()
+  const path = searchPath.get('redirect')
+
 const googleLoginHandel = async()=>{
-const res =await signIn('google',{redirect:false})
+const res =await signIn('google',{
+    redirect:true,
+    callbackUrl:path? path:'/'
+})
 console.log(session);
 if( res.status==='authenticated'){
 router.push('/')

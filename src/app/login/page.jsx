@@ -5,11 +5,13 @@ import image from '../../../assets/images/login/login.svg';
 import SocialLogin from '../../components/sharedComponents/SocialLogin';
 import Link from 'next/link';
 import { signIn} from "next-auth/react";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 
 const LogIn = () => {
   const router=useRouter()
+  const searchPath=useSearchParams()
+  const path = searchPath.get('redirect')
 
     const handelForm = async (e) => {
         e.preventDefault();
@@ -18,7 +20,12 @@ const LogIn = () => {
         const password = form.password.value;
 
      
-        const res = await signIn('credentials', { email, password, redirect: false });
+        const res = await signIn('credentials', { 
+            email, 
+            password,
+             redirect: true,
+             callbackUrl:path? path:'/'
+             });
        
 
         if (res?.error) {
@@ -26,7 +33,7 @@ const LogIn = () => {
         } else {
             console.log('Login successful:', res);
             if(res.status===200){
-                router.push('/')
+                alert('login')
             }
         }
     };
