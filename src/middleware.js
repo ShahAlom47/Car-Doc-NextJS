@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 
 
 export function middleware(request) {
-  const token = cookies(request).get('next-auth.session-token');
+  const token = cookies(request).get('__Secure-next-auth.session-token');
   const pathName = request.nextUrl?.pathname;
 
   console.log('Token:', token); 

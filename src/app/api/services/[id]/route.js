@@ -1,5 +1,6 @@
 import connectDB from "@/lib/connectDB"
 import { ObjectId } from "mongodb"
+import { NextResponse } from "next/server"
 
 
 export const  GET =async(request,{params})=>{
@@ -8,11 +9,11 @@ const id = params.id
     const servicesCollection = db.collection('services')
     try {
         const res = await servicesCollection.findOne({_id: id})
-        return Response.json(res)
+        return NextResponse.json(res)
     }
     catch (error) {
 
-        console.log(error);
-        return Response.json(error)
+       
+        return NextResponse.json(error)
     }
 } 

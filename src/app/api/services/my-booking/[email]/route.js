@@ -1,4 +1,5 @@
 import connectDB from "@/lib/connectDB"
+import { NextResponse } from "next/server"
 
 export const  GET =async(request,{params})=>{
     const email = params.email
@@ -6,11 +7,11 @@ export const  GET =async(request,{params})=>{
         const servicesCollection = db.collection('checkoutData')
         try {
             const res = await servicesCollection.find({email:email}).toArray()
-            return await Response.json(res)
+            return await NextResponse.json(res)
         }
         catch (error) {
     
-            console.log(error);
-            return Response.json(error)
+            
+            return NextResponse.json(error)
         }
     } 

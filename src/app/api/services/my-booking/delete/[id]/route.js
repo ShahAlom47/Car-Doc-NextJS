@@ -43,7 +43,7 @@ export const  DELETE=async(request,{params})=>{
             const res = await checkOutCollection.updateOne({ _id: new ObjectId(id) }, updateDoc, options);
             return new Response(JSON.stringify(res), { status: 200 });
         } catch (error) {
-            console.error('Error updating document:', error);
+        
             return new Response(JSON.stringify({ error: 'Error updating document' }), { status: 500 });
         }
     };

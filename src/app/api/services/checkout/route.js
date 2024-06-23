@@ -1,4 +1,5 @@
 import connectDB from "@/lib/connectDB"
+import { NextResponse } from "next/server"
 
 
 
@@ -10,11 +11,11 @@ const data=await request.json()
 
     try {
         const res = await checkOutCollection.insertOne(data)
-        return Response.json(res)
+        return NextResponse.json(res)
     }
     catch (error) {
 
-        console.log(error);
-        return Response.json(error)
+       
+        return NextResponse.json(error)
     }
 }
